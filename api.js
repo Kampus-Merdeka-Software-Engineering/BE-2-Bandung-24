@@ -15,11 +15,11 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
-app.use("/", menuRouter);
+app.use("/api/v1", menuRouter);
 
 app.use(errorMiddleware);
 
-app.listen(port, (err) => {
+app.listen(process.env.PORT, (err) => {
     if (err) {
         console.error('Error starting the server:', err);
     } else {
