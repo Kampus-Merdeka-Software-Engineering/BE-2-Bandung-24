@@ -15,7 +15,7 @@ module.exports = (err, req, res, next) => {
         };
 
         if (err.name === 'ValidationError') {
-            res.status(400).json(errorResponse);
+            res.status(422).json(errorResponse);
         } else {
             res.status(500).json(errorResponse);
         }

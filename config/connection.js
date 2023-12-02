@@ -30,7 +30,10 @@ function reconnect() {
             .then(() => {
                 logger.info('Reconnected to the database');
             })
-            .catch(reconnect);
+            .catch((err) => {
+                logger.error('Error reconnecting to the database', err);
+                reconnect();
+            });
     }, 2000);
 }
 
@@ -40,6 +43,7 @@ module.exports = {
             const result = await pool.query(text, params);
             return result;
         } catch (err) {
+            logger.error('Database query error', err);
             throw err;
         }
     },
