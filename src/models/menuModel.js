@@ -1,8 +1,8 @@
-const db = require('../../config/connection.js');
+const pool = require('../../config/connection.js');
 
 async function getAllMenu() {
     try {
-        const result = await db.query('SELECT * FROM menu');
+        const result = await pool.query('SELECT * FROM menu');
         return result.rows;
     } catch (error) {
         console.error("Error fetching data from menu:", error);
@@ -17,7 +17,7 @@ async function getMenuByCategory(category) {
             values: [category],
         };
 
-        const result = await db.query(query);
+        const result = await pool.query(query);
         return result.rows;
     } catch (error) {
         console.error("Error fetching data from menu:", error);
