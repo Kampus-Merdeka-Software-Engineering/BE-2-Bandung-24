@@ -1,5 +1,9 @@
+const pino = require('pino');
+
+const logger = pino();
+
 module.exports = (err, req, res, next) => {
-    console.error(err.stack);
+    logger.error(err.stack);
 
     if (process.env.NODE_ENV === 'development') {
         const errorResponse = {

@@ -1,11 +1,14 @@
 const pool = require('../../config/connection.js');
+const pino = require('pino');
+
+const logger = pino();
 
 async function getAllMenu() {
     try {
         const result = await pool.query('SELECT * FROM menu');
         return result.rows;
     } catch (error) {
-        console.error("Error fetching data from menu:", error);
+        logger.error("Error fetching data from menu:", error);
         throw error;
     }
 }
@@ -20,7 +23,7 @@ async function getMenuByCategory(category) {
         const result = await pool.query(query);
         return result.rows;
     } catch (error) {
-        console.error("Error fetching data from menu:", error);
+        logger.error("Error fetching data from menu:", error);
         throw error;
     }
 }

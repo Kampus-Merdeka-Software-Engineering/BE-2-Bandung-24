@@ -1,21 +1,23 @@
 const { Pool } = require('pg');
+const pino = require('pino');
 require('dotenv').config();
+
+const logger = pino();
 
 const pool = new Pool({
     connectionString: process.env.SEKOPI_URL + "?sslmode=require",
-})
+});
 
 pool.connect()
-    .then(() => console.log('Connected to the database'))
+    .then(() => logger.info('Connected to the database'))
     .catch(err => {
-        console.error('Error connecting to database', err);
+        logger.error('Error connecting to database', err);
         process.exit(1);
     });
 
 pool.on('error', err => {
-    console.error('Database error', err);
+    logger.error('Database error', err);
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-
         reconnect();
     } else {
         throw err;
@@ -26,7 +28,7 @@ function reconnect() {
     setTimeout(() => {
         pool.connect()
             .then(() => {
-                console.log('Reconnected to the database');
+                logger.info('Reconnected to the database');
             })
             .catch(reconnect);
     }, 2000);
