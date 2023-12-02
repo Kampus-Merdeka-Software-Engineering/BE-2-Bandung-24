@@ -13,7 +13,7 @@ const port = process.env.PORT || 3001;
 app.use(corsMiddleware);
 
 app.use(bodyParser.json());
-app.use("/api/v1", menuRouter);
+app.use("/v1", menuRouter);
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, (err) => {
