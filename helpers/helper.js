@@ -9,17 +9,19 @@ function isEmpty(data) {
 }
 
 // fungsi untuk menghasilkan objek respons sukses
-function reqSuccess(message, isCreate = false, data = null) {
+function successResponse(message, data = null) {
     return {
-        code: isCreate ? 201 : 200,
+        status: 'success',
+        code: 200,
         message,
         data
     };
 }
 
 // fungsi untuk menghasilkan objek respons kegagalan
-function reqFail(message) {
+function errorResponse(message) {
     return {
+        status: 'error',
         code: 400,
         message
     };
@@ -28,6 +30,6 @@ function reqFail(message) {
 module.exports = {
     getOffset,
     isEmpty,
-    reqSuccess,
-    reqFail
+    successResponse,
+    errorResponse
 };

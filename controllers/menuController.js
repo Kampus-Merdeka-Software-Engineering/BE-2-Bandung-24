@@ -1,34 +1,28 @@
 const menuService = require('../services/menuService.js');
+const { successResponse, errorResponse } = require('../helpers/helper.js');
+const pino = require('pino');
+const logger = pino();
 
-// semua data menu controller
-async function getAllMenu(req, res) {
+// ambil semua data menu controller
+async function getAllMenuController(req, res) {
     try {
         const menu = await menuService.getAllMenu();
-        res.status(200).json({
-            message: "Successfully fetched all users",
-            data: menu
-        });
+        res.status(200).json(successResponse("Successfully fetched all menu", menu));
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
+        logger.error("Error in getAllMenuController:", error);
+        res.status(500).json(errorResponse('Internal server error'));
     }
 }
 
-// data menu berdasarkan category controller
-async function getMenuByCategory(req, res) {
+// ambil data menu berdasarkan kategori controller
+async function getMenuByCategoryController(req, res) {
     try {
         const category = await menuService.getMenuByCategory(req.params.category);
-        res.status(200).json({
-            message: "Successfully fetched all users",
-            data: category
-        });
+        res.status(200).json(successResponse("Successfully fetched menu by category", category));
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
+        console.error('Error in getMenuByCategoryController:', error);
+        res.status(500).json(errorResponse('Internal server error'));
     }
 }
 
-module.exports = {
-    getAllMenu,
-    getMenuByCategory
-}
+module.exports = { getAllMenuController, getMenuByCategoryController };

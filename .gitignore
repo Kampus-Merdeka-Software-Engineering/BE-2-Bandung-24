@@ -2,5 +2,4 @@ node_modules
 package-lock.json
 api.rest
 .env
-
-
+.gitignore

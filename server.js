@@ -1,20 +1,24 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 const pino = require('pino');
-const app = express();
+const menuRoutes = require('./routes/menuRoutes.js');
 const logger = pino();
-const { menuRoutes } = require('./routes/menuRoutes.js');
-const PORT = 3001 || process.env.PORT;
+const app = express();
+const port = process.env.PORT || 5000;
 
 // middleware
-app.use(cors())
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 // routes
-const menuRoutes = express.Router();
-app.use('/api', menuRoutes);
+app.use("/api", menuRoutes);
 
-// server status
-app.listen(PORT, () => logger.info('Server ready on port:', PORT));
+// jalanin server
+app.listen(process.env.PORT, (err) => {
+    if (err) {
+        logger.error('Error starting the server:', err);
+    } else {
+        logger.info(`Server is running on port ${port}`);
+    }
+});

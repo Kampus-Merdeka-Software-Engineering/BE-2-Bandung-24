@@ -1,31 +1,42 @@
 const pool = require('../config/database.js');
+const pino = require('pino');
+const logger = pino();
 
-// semua data menu
+// ambil semua data menu
 async function getAllMenu() {
-    const connection = await pool.getConnection();
     try {
-        const [rows] = await connection.query('SELECT * FROM menu');
-        return rows;
-    } finally {
-        connection.release();
+        const query = 'SELECT * FROM menu';
+        const result = await executeQuery(query);
+        return result;
+    } catch (error) {
+        logger.error("Error fetching data from menu:", error);
+        throw error;
     }
 }
 
-// data menu berdasarkan category
-async function getMenuByCategory(menu) {
-    const connection = await pool.getConnection();
+// ambil data menu berdasarkan kategori
+async function getMenuByCategory(category) {
     try {
-        const [rows] = await connection.query(
-            'SELECT * FROM menu WHERE category = ?',
-            [menu]
-        );
-        return rows.insertId;
-    } finally {
-        connection.release();
+        const query = 'SELECT * FROM menu WHERE category = ?';
+        const result = await executeQuery(query, [category]);
+        return result;
+    } catch (error) {
+        logger.error("Error fetching data from menu:", error);
+        throw error;
     }
 }
 
-module.exports = {
-    getAllMenu,
-    getMenuByCategory
-};
+// fungsi eksekusi kueri umum
+function executeQuery(query, values) {
+    return new Promise((resolve, reject) => {
+        pool.query(query, values, (error, results) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+}
+
+module.exports = { getAllMenu, getMenuByCategory };

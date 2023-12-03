@@ -1,11 +1,14 @@
 const express = require('express');
-const menuController = require('../controllers/menuController');
-const menuRoutes = express.Router();
+const menuController = require('../controllers/menuController.js');
+const router = express.Router();
 
-// ambil semua data menu
-menuRoutes.get('/menu', menuController.getAllMenu);
+// router bawaan
+router.get("/", (req, res) => {
+    res.status(200).json({ message: "Ini data API SE.Kopi" });
+});
 
-// ambil data menu berdasarkan category
-menuRoutes.post('/menu:category', menuController.getMenuByCategory);
+// menu & category router
+router.get("/menu", menuController.getAllMenuController);
+router.get("/menu/:category", menuController.getMenuByCategoryController);
 
-module.exports = { menuRoutes };
+module.exports = router;
