@@ -17,11 +17,11 @@ module.exports = (err, req, res, next) => {
 
         // kesalahan pada validasi
         if (err.name === 'ValidationError') {
-            return res.status(422).json(errorResponse);
+            res.status(422).json(errorResponse);
         } else {
-            return res.status(500).json(errorResponse);
+            res.status(500).json(errorResponse);
         }
     } else {
-        return res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 };

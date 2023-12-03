@@ -1,4 +1,4 @@
-const { menuModel } = require('../models/menuModel.js');
+const menuModel = require('../models/menuModel.js');
 const { successResponse, errorResponse } = require('../../helpers/response.js');
 const pino = require('pino');
 const logger = pino();

@@ -1,4 +1,4 @@
-const { pool } = require('../../config/connection.js');
+const pool = require('../../config/connection.js');
 const pino = require('pino');
 const logger = pino();
 
