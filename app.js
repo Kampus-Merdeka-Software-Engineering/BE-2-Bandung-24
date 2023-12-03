@@ -2,15 +2,30 @@ const express = require("express");
 const app = express();
 const PORT = 3005;
 const cors = require("cors");
+const router = require('./routes')
 
+app.use(cors())
+app.use(express.json())
 
 // data
-const fs = require("fs");
+// const fs = require("fs");
 
 // handle request
 app.get("/", (req, res) => {
-    res.send("Ini respon buat kamu yaa");
-});
+    res.json({
+        message: 'WELCOME'
+    })
+})
+
+app.use("/menu", router)
+// app.get('/menu', (req, res) => {
+//     const sql = "SELECT * FROM menu";
+//     db.query(sql, (err, fields) => {
+//         if (err) throw err;
+//         response(200, fields, "menu get list", res)
+//     })
+// })
+
 
 // // request menu
 // app.get("/menu", (req, res) => {

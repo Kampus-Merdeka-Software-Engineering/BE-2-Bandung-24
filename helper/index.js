@@ -1,8 +1,11 @@
+function getOffset(currentPage = 1, listPerPage) {
+    return (currentPage - 1) * [listPerPage]
+}
 function isEmpty(data) {
     if (!data) {
         return []
     }
-    return data;
+    return data
 }
 
 function reqSuccess(message, isCreate = false, data = null) {
@@ -28,6 +31,7 @@ function reqFail(message) {
 }
 
 module.exports = {
+    getOffset,
     isEmpty,
     reqSuccess,
     reqFail
