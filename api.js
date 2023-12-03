@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const menuRouter = require('./src/routes/menuRouter.js');
 const errorMiddleware = require('./src/middleware/errorMiddleware.js');
-const { corsMiddleware } = require('./constants/constant.js');
+const { corsMiddleware } = require('./src/middleware/corsMiddleware.js');
 const pino = require('pino');
 require('dotenv').config();
 
