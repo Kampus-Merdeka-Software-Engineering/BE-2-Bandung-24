@@ -1,21 +1,25 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const menuRouter = require('./src/routes/menuRouter.js');
-const errorMiddleware = require('./src/middleware/errorMiddleware.js');
-const { corsMiddleware } = require('./src/middleware/corsMiddleware.js');
-const pino = require('pino');
 require('dotenv').config();
-
+const express = require('express');
+const cors = require('cors');
+const pino = require('pino');
+const { menuRouter } = require('./src/routes/menuRouter.js');
+const { errorMiddleware } = require('./src/middleware/errorMiddleware.js');
 const logger = pino();
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(corsMiddleware);
+// middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(bodyParser.json());
-app.use("/v1", menuRouter);
+// error middleware
 app.use(errorMiddleware);
 
+// routes
+app.use("/v1", menuRouter);
+
+// start the server
 app.listen(process.env.PORT, (err) => {
     if (err) {
         logger.error('Error starting the server:', err);

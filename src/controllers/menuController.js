@@ -1,9 +1,9 @@
-const menuModel = require('../models/menuModel.js');
+const { menuModel } = require('../models/menuModel.js');
 const { successResponse, errorResponse } = require('../../helpers/response.js');
 const pino = require('pino');
-
 const logger = pino();
 
+// get all menu controller
 async function getAllMenuController(req, res) {
     try {
         const data = await menuModel.getAllMenu();
@@ -14,6 +14,7 @@ async function getAllMenuController(req, res) {
     }
 }
 
+// get menu by category controller
 async function getMenuByCategoryController(req, res) {
     const category = req.params.category;
     try {

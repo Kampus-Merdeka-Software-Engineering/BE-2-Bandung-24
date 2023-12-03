@@ -1,8 +1,8 @@
-const pool = require('../../config/connection.js');
+const { pool } = require('../../config/connection.js');
 const pino = require('pino');
-
 const logger = pino();
 
+// get all menu
 async function getAllMenu() {
     try {
         const result = await pool.query('SELECT * FROM menu');
@@ -13,6 +13,7 @@ async function getAllMenu() {
     }
 }
 
+// get menu by category
 async function getMenuByCategory(category) {
     try {
         const query = {
