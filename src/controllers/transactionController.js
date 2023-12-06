@@ -22,4 +22,15 @@ async function createTransactionController(req, res) {
     }
 }
 
-module.exports = { createTransactionController };
+// get all transaction controller
+async function getAllTransactionController(req, res) {
+    try {
+        const result = await transactionModel.getAllTransaction();
+        res.json(successResponse(result, 'Get all transaction success'));
+    } catch (error) {
+        logger.error("Error fetching data from transactions:", error);
+        res.status(500).json(errorResponse('Internal Server Error'));
+    }
+}
+
+module.exports = { createTransactionController, getAllTransactionController };

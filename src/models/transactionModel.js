@@ -28,4 +28,15 @@ async function createTransaction({ nomor_meja, nama_pemesan, orders, status_pemb
     }
 }
 
-module.exports = { createTransaction };
+// get all transaction model
+async function getAllTransaction() {
+    try {
+        const result = await pool.query('SELECT * FROM transactions');
+        return result.rows;
+    } catch (error) {
+        logger.error("Error fetching data from transactions:", error);
+        throw error;
+    }
+}
+
+module.exports = { createTransaction, getAllTransaction };
