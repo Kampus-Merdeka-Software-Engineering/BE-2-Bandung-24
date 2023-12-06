@@ -4,7 +4,7 @@ Welcome to SE.Kopi Backend API! This project serves as the backend for SE.Kopi w
 
 ## Table of Contents
 
-- [Technologies Used](#technologies_used)
+- [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -62,12 +62,10 @@ Before you begin, make sure you have the following tools and software installed:
    ```bash
    git clone https://github.com/Kampus-Merdeka-Software-Engineering/BE-2-Bandung-24
 
-   ```
 Move to directory repository:
    ```
    cd BE-2-Bandung-24
    ```
-   
 2. Install dependencies:
 
 ```bash
