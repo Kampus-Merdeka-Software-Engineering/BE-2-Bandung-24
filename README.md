@@ -59,7 +59,8 @@ Before you begin, make sure you have the following tools and software installed:
 
 1. Clone the repository:
 
-   git clone https://github.com/Kampus-Merdeka-Software-Engineering/BE-2-Bandung-24
+   ```bash
+git clone https://github.com/Kampus-Merdeka-Software-Engineering/BE-2-Bandung-24
 
 Move to directory repository:
    ```
@@ -67,6 +68,7 @@ Move to directory repository:
    ```
 2. Install dependencies:
 
+```bash
 npm i 
 ```
 ## Usage
