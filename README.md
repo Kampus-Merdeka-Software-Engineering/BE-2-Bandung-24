@@ -60,7 +60,7 @@ Before you begin, make sure you have the following tools and software installed:
 1. Clone the repository:
 
    ```bash
-git clone https://github.com/Kampus-Merdeka-Software-Engineering/BE-2-Bandung-24
+   git clone https://github.com/Kampus-Merdeka-Software-Engineering/BE-2-Bandung-24
 
 Move to directory repository:
    ```
