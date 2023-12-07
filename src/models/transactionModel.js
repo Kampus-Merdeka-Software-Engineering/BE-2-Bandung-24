@@ -11,7 +11,7 @@ async function createTransaction({ nomor_meja, nama_pemesan, orders, status_pemb
     }
 
     const query = `
-        INSERT INTO transactions (nomor_meja, nama_pemesan, orders, status_pembayaran)
+        INSERT INTO transaction (nomor_meja, nama_pemesan, orders, status_pembayaran)
         VALUES ($1, $2, $3::json, $4)
         RETURNING *
     `;
@@ -31,7 +31,7 @@ async function createTransaction({ nomor_meja, nama_pemesan, orders, status_pemb
 // get all transaction model
 async function getAllTransaction() {
     try {
-        const result = await pool.query('SELECT * FROM transactions');
+        const result = await pool.query('SELECT * FROM transaction');
         return result.rows;
     } catch (error) {
         logger.error("Error fetching data from transactions:", error);

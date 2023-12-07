@@ -7,6 +7,7 @@ const transactionRouter = require('./src/routes/transactionRouter.js');
 const errorMiddleware = require('./src/middleware/errorMiddleware.js');
 const logger = pino();
 const app = express();
+const v1 = express.Router();
 const port = process.env.PORT || 3001;
 
 // middleware
@@ -18,7 +19,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(errorMiddleware);
 
 // routes
-v1 = express.Router();
 app.use("/v1", v1);
 
 // menu & category routes
@@ -28,7 +28,7 @@ v1.use("/menu", menuRouter);
 v1.use("/transaction", transactionRouter);
 
 // start the server
-app.listen(process.env.PORT, (err) => {
+app.listen(port, (err) => {
     if (err) {
         logger.error('Error starting the server:', err);
     } else {
