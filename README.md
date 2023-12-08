@@ -8,7 +8,7 @@ Welcome to SE.Kopi Backend API! This project serves as the backend for SE.Kopi w
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Usage](#usage)
+  - [Usage](#usage)
   - [API Endpoints](#api-endpoints)
 - [Demo API](#demo-api)
 
